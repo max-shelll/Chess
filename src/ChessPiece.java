@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public abstract class ChessPiece {
 
     protected String color;
@@ -20,11 +22,6 @@ public abstract class ChessPiece {
             return false;
         else if (line == toLine && column == toColumn)
             return false;
-
-        ChessPiece targetPiece = chessBoard.board[toLine][toColumn];
-        if (targetPiece != null && targetPiece.getColor().equals(this.getColor())) {
-            return false;
-        }
 
         return true;
     }

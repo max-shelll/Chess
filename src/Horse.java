@@ -19,6 +19,12 @@ public class Horse extends ChessPiece {
         else if (forwardSteps > 2 || sidewaysSteps > 2)
             return false;
 
+        ChessPiece targetPice = chessBoard.board[toLine][toColumn];
+        if (targetPice != null && !targetPice.getColor().equals(this.color))
+            return true;
+        else if (targetPice != null && targetPice.getColor().equals(this.color))
+            return false;
+
         return true;
     }
 

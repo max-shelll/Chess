@@ -7,9 +7,6 @@ public class King extends ChessPiece {
     }
 
     public boolean isUnderAttack(ChessBoard board, int line, int column) {
-        if (board.board[line][column] == null) {
-            return false;
-        }
         return !board.board[line][column].getSymbol().isEmpty();
     }
 
@@ -22,6 +19,12 @@ public class King extends ChessPiece {
         int sidewaysSteps = Math.abs(toColumn - column);
 
         if (forwardSteps > 1 || sidewaysSteps > 1)
+            return false;
+
+        ChessPiece targetPice = chessBoard.board[toLine][toColumn];
+        if (targetPice != null && !targetPice.getColor().equals(this.color))
+            return true;
+        else if (targetPice != null && targetPice.getColor().equals(this.color))
             return false;
 
         return true;

@@ -27,6 +27,24 @@ public class Pawn extends ChessPiece {
                 return false;
         }
 
+        if (color.equals("White")) {
+            for (int nextLineIndex = line + 1; nextLineIndex <= toLine; nextLineIndex++) {
+                if (chessBoard.board[nextLineIndex][column] != null)
+                    return false;
+            }
+        } else {
+            for (int nextLineIndex = line - 1; nextLineIndex >= toLine; nextLineIndex--) {
+                if (chessBoard.board[nextLineIndex][column] != null)
+                    return false;
+            }
+        }
+
+        ChessPiece targetPice = chessBoard.board[toLine][toColumn];
+        if (targetPice != null && !targetPice.getColor().equals(this.color))
+            return true;
+        else if (targetPice != null && targetPice.getColor().equals(this.color))
+            return false;
+
         return true;
     }
 
